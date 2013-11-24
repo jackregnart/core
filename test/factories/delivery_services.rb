@@ -12,12 +12,12 @@ module Shoppe
     end
     
     factory :delivery_service, :class => DeliveryService do
-      name           'Next Day Delivery'
-      code           'ND'
-      default        true
-      active         true
-      courier        'UPS'
-      tracking_url   'http://sometrackingsite.com/{{consignment_number}}/{{billing_postcode}}/{{delivery_postcode}}'
+      name            'Next Day Delivery'
+      code            'ND'
+      default_service true
+      active          true
+      courier         'UPS'
+      tracking_url    'http://sometrackingsite.com/{{consignment_number}}/{{billing_postcode}}/{{delivery_postcode}}'
 
       factory :delivery_service_with_prices do
         ignore do
@@ -34,9 +34,9 @@ module Shoppe
     end
 
     factory :saturday_delivery, :parent => :delivery_service do
-      name            'Saturday Delivery'
-      code            'SD'
-      default         false
+      name             'Saturday Delivery'
+      code             'SD'
+      default_service  false
       factory :saturday_delivery_with_prices do
         after(:create) do |service, evaluator|
           FactoryGirl.create(:delivery_price, :delivery_service => service, :price => 15.0)
@@ -47,11 +47,11 @@ module Shoppe
     end
 
     factory :first_class_post, :class => DeliveryService do
-      name           'First Class Post'
-      code           'RMFS'
-      default        false
-      active         true
-      courier        'Royal Mail'
+      name            'First Class Post'
+      code            'RMFS'
+      default_service false
+      active          true
+      courier         'Royal Mail'
       factory :first_class_post_with_prices do
         after(:create) do |service, evaluator|
           FactoryGirl.create(:delivery_price, :delivery_service => service, :min_weight => 0, :max_weight => 0.1, :price => 1.0, :cost_price => 0.50)

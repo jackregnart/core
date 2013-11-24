@@ -5,7 +5,7 @@ module Shoppe
     validate { errors.add :base, "can only belong to a root product" if self.parent && self.parent.parent }
     
     # Variants of the product
-    has_many :variants, -> { order("`default` desc, name asc")}, :class_name => 'Shoppe::Product', :foreign_key => 'parent_id', :dependent => :destroy
+    has_many :variants, -> { order("default_product desc, name asc")}, :class_name => 'Shoppe::Product', :foreign_key => 'parent_id', :dependent => :destroy
     
     # The parent product (only applies to variants)
     belongs_to :parent, :class_name => 'Shoppe::Product', :foreign_key => 'parent_id'
@@ -37,7 +37,7 @@ module Shoppe
     # @return [Shoppe::Product]
     def default_variant
       return nil if self.parent
-      @default_variant ||= self.variants.select { |v| v.default? }.first
+      @default_variant ||= self.variants.select { |v| v.default_product? }.first
     end
     
     # Is this product a variant of another?

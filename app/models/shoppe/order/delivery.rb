@@ -140,7 +140,7 @@ module Shoppe
     # @return [Array] an array of Shoppe:DeliveryServicePrice objects
     def delivery_service_prices
       if delivery_required?
-        prices = Shoppe::DeliveryServicePrice.joins(:delivery_service).where(:shoppe_delivery_services => {:active => true}).order("`default` desc, price asc").for_weight(total_weight)
+        prices = Shoppe::DeliveryServicePrice.joins(:delivery_service).where(:shoppe_delivery_services => {:active => true}).order("default_service desc, price asc").for_weight(total_weight)
         prices = prices.select { |p| p.countries.empty? || p.country?(self.delivery_country) }
         prices
       else

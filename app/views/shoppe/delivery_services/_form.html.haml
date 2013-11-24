@@ -15,10 +15,10 @@
           = f.check_box :active
           = f.label :active, 'Service will be available for use'
       %dl.half
-        %dt= f.label :default
+        %dt= f.label :default_service
         %dd.checkbox
-          = f.check_box :default
-          = f.label :default, 'Service will be used by default (if possible)'
+          = f.check_box :default_service
+          = f.label :default_service, 'Service will be used by default (if possible)'
   = field_set_tag "Courier" do
     .splitContainer
       %dl.half

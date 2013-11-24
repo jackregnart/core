@@ -374,7 +374,7 @@ module Shoppe
       assert_equal 3, order.available_delivery_services.size
       assert_equal 3, order.delivery_service_prices.size
       # check the default delivery service has been selected
-      assert_equal DeliveryService.find_by_default(true), order.delivery_service
+      assert_equal DeliveryService.find_by_default_service(true), order.delivery_service
       # check that the prices for this service are correct
       assert_equal BigDecimal(5), order.delivery_price
       assert_equal BigDecimal(2.5,8), order.delivery_cost_price
@@ -388,7 +388,7 @@ module Shoppe
       # check that the lowest service has vanished leaving us with sat & nD
       assert_equal 2, order.available_delivery_services.size
       assert_equal 2, order.delivery_service_prices.size
-      assert_equal DeliveryService.find_by_default(true), order.delivery_service
+      assert_equal DeliveryService.find_by_default_service(true), order.delivery_service
       assert_equal BigDecimal(8), order.delivery_price
       assert_equal BigDecimal(4), order.delivery_cost_price
       assert_equal BigDecimal(20), order.delivery_tax_rate
@@ -401,7 +401,7 @@ module Shoppe
       # check that the lowest service has vanished leaving us with sat & nD
       assert_equal 2, order.available_delivery_services.size
       assert_equal 2, order.delivery_service_prices.size
-      assert_equal DeliveryService.find_by_default(true), order.delivery_service
+      assert_equal DeliveryService.find_by_default_service(true), order.delivery_service
       assert_equal BigDecimal(12), order.delivery_price
       assert_equal BigDecimal(6), order.delivery_cost_price
       assert_equal BigDecimal(20), order.delivery_tax_rate

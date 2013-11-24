@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20131102143930) do
+ActiveRecord::Schema.define(version: 20131124142013) do
 
   create_table "nifty_attachments", force: true do |t|
     t.integer  "parent_id"
@@ -60,8 +60,8 @@ ActiveRecord::Schema.define(version: 20131102143930) do
   create_table "shoppe_delivery_services", force: true do |t|
     t.string   "name"
     t.string   "code"
-    t.boolean  "default",      default: false
-    t.boolean  "active",       default: true
+    t.boolean  "default_service", default: false
+    t.boolean  "active",          default: true
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "courier"
@@ -177,7 +177,7 @@ ActiveRecord::Schema.define(version: 20131102143930) do
     t.boolean  "featured",                                    default: false
     t.text     "in_the_box"
     t.boolean  "stock_control",                               default: true
-    t.boolean  "default",                                     default: false
+    t.boolean  "default_product",                             default: false
   end
 
   create_table "shoppe_settings", force: true do |t|

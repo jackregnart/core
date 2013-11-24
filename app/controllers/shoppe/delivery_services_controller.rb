@@ -40,7 +40,7 @@ module Shoppe
     private
   
     def safe_params
-      params[:delivery_service].permit(:name, :code, :active, :default, :courier, :tracking_url)
+      params[:delivery_service].permit(:name, :code, :active, :default_service, :courier, :tracking_url)
     end
   
   end
